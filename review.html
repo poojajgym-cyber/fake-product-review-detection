@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake Review Detector</title>
+    <style>
+        body { display:flex; justify-content:center; align-items:center; height:100vh; font-family:Arial; background:#f0f0f0; }
+        .container { background:#fff; padding:30px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.2); text-align:center; width:400px; }
+        input, textarea, select, button { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; font-size:16px; }
+        button { background:#4CAF50; color:white; border:none; cursor:pointer; }
+        button:hover { background:#45a049; }
+        .result { margin-top:20px; font-weight:bold; color:#333; }
+        .logout { margin-top:15px; display:inline-block; color:#fff; background:#f44336; padding:8px 15px; border-radius:6px; text-decoration:none; }
+        .logout:hover { background:#d32f2f; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fake Review Detector</h2>
+        <form method="POST">
+            <input type="text" name="product" placeholder="Product Name" required>
+            <textarea name="review" placeholder="Enter Review" rows="4" required></textarea>
+            <select name="rating" required>
+                <option value="">Select Rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Star</option>
+                <option value="3">3 Star</option>
+                <option value="4">4 Star</option>
+                <option value="5">5 Star</option>
+            </select>
+            <button type="submit">Check Review</button>
+        </form>
+        {% if result %}
+            <div class="result">{{ result }}</div>
+        {% endif %}
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </div>
+</body>
+</html>
